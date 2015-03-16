@@ -1,5 +1,8 @@
 apply plugin: 'java'
-apply plugin: 'maven'
+
+file('gradle.d').list().each {
+    it ==~ /.+\.gradle/ && apply(from: "gradle.d/$it")
+}
 
 group='taosha.util'
 version='1.0.1'
@@ -8,10 +11,9 @@ sourceCompatibility = 1.6
 targetCompatibility = 1.6
 
 repositories {
-	mavenLocal()
-    mavenCentral()
+	jcenter()
 }
 
 dependencies {
-	compile 'com.google.android:android:2.2.1'
+	provided 'com.google.android:android:2.+'
 }
